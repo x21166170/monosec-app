@@ -47,6 +47,10 @@ def create_post():
         flash("Need authorization to view the page", 'error')
         logout_user()
         return redirect(url_for('main.home'))
+    if not current_user.active:
+        flash("Need authorization to view the page", 'error')
+        current_app.logger.warning("User not active, redirecting " + str(current_user.id))
+        return redirect(url_for('main.home'))
     create_post_form = CreatePost()
     if request.method == 'POST':
         if create_post_form.validate_on_submit():

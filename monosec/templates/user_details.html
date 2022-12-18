@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Post Details{% endblock %}</title>
+
+{% block content %}
+<h1>User Details</h1>
+<article class="media content-section">
+    <br>
+    <div class="media-body">
+        <div class="article-metadata">
+            <p class="article-content">Name - </a>
+            <a class="mr-2" href="#">{{ user.name }}</a>
+            <p class="article-content">Email Address - </a>
+            <a class="mr-2" href="#">{{ user.email }}</a>
+            <p class="article-content">Active - {{ user.active }}</p>
+            <p class="article-content">Internal User - {{ user.org_user }}</p>
+        </div>
+    </div>
+</article>
+<!-- Modal -->
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('users.update_user', user_id=user.id) }}">Update</a>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('users.delete_user', user_id=user.id) }}">Delete</a>
+</div>
+{% endblock content %}

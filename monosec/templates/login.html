@@ -1,0 +1,65 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Login{% endblock %}</title>
+{% block content %}
+    <h1>Welcome to Login</h1>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }} 
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Login with registered email.</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {% for error in form.recaptcha.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    {{ form.recaptcha }}
+                </div>
+                
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}                
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Do not have an account? <a class="ml-2" href="{{ url_for('users.register') }}">Register</a>
+                </small>
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Trouble logging in? <a class="ml-2" href="{{ url_for('creds.reset_request') }}">Reset Password</a>
+                </small>
+            </div>
+            
+            
+        </form>
+    </div>
+    <br>
+    <div>
+        <h2>Login Using Google SSO - <a class="ml-2" href="{{ url_for('users.sso_login') }}">Google-Login</a></h2>
+    </div>
+{% endblock content %}

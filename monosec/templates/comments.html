@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Comment Details{% endblock %}</title>
+
+{% block content %}
+    <h1>Welcome to MonoSec Customer Querries Comments Portal</h1>
+    <br>
+    {% if (comments is defined) and comments %}
+      <table class="table table-success table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for comment in comments %}
+          <tr>
+            <td>{{comment.title}}</td>
+            <td>{{comment.author.name}}</td>
+            <td>{{comment.date.strftime('%Y-%m-%d')}}</td>
+            <td>{{comment.text}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    {% else %}
+      <h1>You have not added comments yet. Please add  a comment using <a href=" {{ url_for('posts.add_comment', post_id=post_id)}}">AddComment</a> </h1> 
+    {% endif %}     
+    <div>
+      {% if current_user.is_authenticated %}
+        <a class="nav-item nav-link" id="add_post" href="{{ url_for('posts.add_comment', post_id=post_id) }}">Add Comment</a>
+      {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Customer Portal{% endblock %}</title>
+
+{% block content %}
+  {% if admin == True %}
+    <h1>Welcome Admin</h1>
+    <h2><a class="nav-item nav-link" id="home" href="{{ url_for('users.manage_users') }}">Manage Users</a></h2>  
+  {% else %}
+    <h1>Welcome to Monosec Customer Portal - {{ name }}</h1>
+  {% endif %}
+<br>
+{% if (posts is defined) and posts %}
+<table class="table table-success table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Content</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    <tr>
+      <td><a href=" {{ url_for('posts.post', post_id=post.id)}}">{{post.title}}</a></td>
+      <td>{{post.creation_date.strftime('%Y-%m-%d')}}</td>
+      <td>{{post.content}}</td>
+      <td>{{post.author.name}}</td>
+      {% if post.status == 0 %}
+        <td>Closed</td>
+      {% else %}
+        <td>Open</td>
+      {% endif %}
+      <td><a href=" {{ url_for('posts.comments', post_id=post.id)}}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<td>
+
+</td>
+{% else %}
+<h1>You have not created any posts yet. Please create a post using <a
+    href=" {{ url_for('posts.create_post')}}">AddPost</a> </h1>
+{% endif %}
+
+
+{% endblock content %}

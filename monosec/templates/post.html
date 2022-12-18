@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Post Details{% endblock %}</title>
+
+{% block content %}
+<h1>MonoSec Customer Querries 'Posts Portal'</h1>
+<article class="media content-section">
+    <br>
+    <div class="media-body">
+        <h2 class="article-title">{{ post.title }}</h2>
+        <div class="article-metadata">
+            <p class="article-content">Created By - </a>
+            <a class="mr-2" href="#">{{ post.author.name }}</a>
+            <p class="article-content">Creation Date - {{ post.creation_date.strftime('%Y-%m-%d') }}</p>
+            <p class="article-content">Detail - {{ post.content }}</p>
+        </div>
+    </div>
+</article>
+<!-- Modal -->
+{% if (post.author == current_user) or (user.admin==True) %}
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+</div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - Auth{% endblock %}</title>
+{% block content %}
+<h1>User Registration - Authentication</h1>
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }} 
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Please enter the authentication token sent to the mail id used for Registration.</legend>
+            <div class="form-group">
+                {{ form.auth_token.label(class="form-control-label") }}
+
+                {% if form.auth_token.errors %}
+                    {{ form.auth_token(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.auth_token.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.auth_token(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

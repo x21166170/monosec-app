@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - VErification{% endblock %}</title>
+{% block content %}
+    <h1>Password Reset</h1>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }} 
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Please enter the email to reset password.</legend>                
+                <div class="form-group">
+                    <h3>A security token would be sent to the email, which has to be entered in the next screen within 5 minutes to reset password</h3>
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>                                                        
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>    
+{% endblock content %}

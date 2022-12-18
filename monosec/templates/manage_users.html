@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+<title>{% block title %}MonoSec - User Management{% endblock %}</title>
+{% block content %}
+{% if (users is defined) and users %}
+
+<table class="table table-success table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Internal User</th>        
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td><a href=" {{ url_for('users.user_details', user_id=user.id)}}">{{user.name}}</a></td>
+        <td>{{ user.email}}</td>
+        <td>{{user.active}}</td>
+        <td>{{user.org_user}}</td>        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%else%}
+<h2>No users found</h2>
+{%endif%}
+{% endblock content %}

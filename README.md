@@ -21,4 +21,7 @@ Code is built on Python3 and Flask Framework (linux-ubuntu20)
   * RECAPTCHA_PUBLIC_KEY - From google
   * EMAIL_SENDER - From google
   * EMAIL_PASSWORD - From google
-10. Run the module using python3 run.py
+11. Run the module using python3 run.py
+
+
+Reach out at - x21166170@gmail.com

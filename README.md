@@ -21,7 +21,9 @@ Code is built on Python3 and Flask Framework (linux-ubuntu20)
   * RECAPTCHA_PUBLIC_KEY - From google
   * EMAIL_SENDER - From google
   * EMAIL_PASSWORD - From google
-11. Run the module using python3 run.py
+11. Supported databases for this application are Postgres and SQLite
+12. In the absence of the environment variable SQLALCHEMY_DATABASE_URI, the application would create a SQLITE database within the execution directory
+12. Run the module using python3 run.py
 
 
 Reach out at - x21166170@gmail.com

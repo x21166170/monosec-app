@@ -1,5 +1,5 @@
 # monosec-app
-This is a test project for NCI Dublin - Web Application Security Project
+This is a test web application project developed using Flask for NCI Dublin - Web Application Security Course
 
 
 # Usage
